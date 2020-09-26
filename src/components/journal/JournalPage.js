@@ -1,9 +1,18 @@
 import React from 'react'
+import { NotePage } from '../notes/NotePage'
+// import { NothingSelected } from './NothingSelected'
+import { SideBar } from './SideBar'
 
 export const JournalPage = () => {
+
     return (
-        <div>
-            <h1>Journal Page</h1>
+
+        <div className="journal__main-content">
+            <SideBar />
+        <main>
+            <NotePage />
+            {/* <NothingSelected /> */}
+        </main>
         </div>
     )
 }
