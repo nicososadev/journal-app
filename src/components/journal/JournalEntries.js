@@ -7,16 +7,14 @@ export const JournalEntries = () => {
 
     return (
 
-        <div>
-            <div className="journal__entries">
-                {
-                    entries.map( value => (
-                        <JournalEntry
-                            key={ value }
-                        />
-                    ))
-                }
-            </div>
+        <div className="journal__entries">
+            {
+                entries.map( value => (
+                    <JournalEntry
+                        key={ value }
+                    />
+                ))
+            }
         </div>
     )
 }
