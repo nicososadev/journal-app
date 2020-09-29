@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { login } from '../../actions/auth'
+import { googleLoginManager, loginManager } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
 
 export const LoginPage = () => {
@@ -18,7 +18,12 @@ export const LoginPage = () => {
     const handleLogin = (e) =>{
         e.preventDefault()
         
-        dispatch( login(12345, 'Nicolas') )
+        dispatch( loginManager(email, password) )
+    }
+
+    const googleLogin = () => {
+        
+        dispatch( googleLoginManager() )
     }
 
 
@@ -41,7 +46,7 @@ export const LoginPage = () => {
 
                 <div className="auth__social-networks">
                     <p>Login with Social Network</p>
-                    <div className="google-btn">
+                    <div onClick={googleLogin} className="google-btn">
                         <div className="google-icon-wrapper">
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                         </div>
