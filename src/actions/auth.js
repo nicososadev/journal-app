@@ -1,14 +1,48 @@
+import Swal from 'sweetalert2'
 import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { types } from '../types/types'
+import { finishLoading, startLoading } from './ui';
 
 export const loginManager = (email, password) => {
 
     return (dispatch) => {
 
-        setTimeout(() => {
-            
-            dispatch( login(123, 'Juan') )
-        }, 3500);
+        dispatch( startLoading() )
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then( ({ user }) => {
+                
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+                
+                dispatch( finishLoading() )
+                
+            })            
+            .catch(error => {
+                dispatch( finishLoading() )
+                Swal.fire('Authentication Error', error.message, 'error')
+        })
+    }
+}
+
+export const registerManager = ( email, password, name) => {
+
+    return (dispatch) => {
+
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then( async({ user }) => {
+                await user.updateProfile({
+                    displayName: name
+                })
+
+                dispatch(
+                    login(user.uid, user.displayName)
+                )
+            })
+            .catch(error => {
+                Swal.fire('User already exists', error.message, 'error')
+            })
     }
 }
 
@@ -33,5 +67,22 @@ export const login = (uid, displayName) => {
             uid,
             displayName
         }
+    }
+}
+
+export const logoutManager = () => {
+
+    return async(dispatch) => {
+
+        await firebase.auth().signOut()
+
+        dispatch( logout() )
+    }
+}
+
+export const logout = () => {
+
+    return {
+        type: types.logout
     }
 }
