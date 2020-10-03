@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { activeNote } from '../../actions/notes'
+import { activeNote, deleteManager } from '../../actions/notes'
 import { useForm } from '../../hooks/useForm'
 import { NotesAppBar } from './NotesAppBar'
 
@@ -31,6 +31,11 @@ export const NotePage = () => {
 
     }, [formValues, dispatch])
 
+    const handleDelete = () => {
+
+        dispatch( deleteManager( activeId.current ) )
+    }
+
     return (
 
         <div className="notes__main-content">
@@ -47,10 +52,17 @@ export const NotePage = () => {
                 {
                     (note.url) &&
                     <div className="notes__image">
-                        <img src="https://this.deakin.edu.au/wp-content/uploads/2019/06/coding-on-a-computer.jpg" alt="imagen"/>
+                        <img src={note.url} alt="imagen"/>
                     </div>
                 }
             </div>
+
+            <button
+                className="btn btn-danger"
+                onClick={handleDelete}
+            >
+                Delete
+            </button>
         </div>
 
     )

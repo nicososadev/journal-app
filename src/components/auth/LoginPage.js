@@ -35,7 +35,7 @@ export const LoginPage = () => {
         <Fragment>
             <h3 className="auth__title">Login</h3>
 
-            <form onSubmit={ handleLogin } >
+            <form className="animate__animated animate__fadeIn animate__faster" onSubmit={ handleLogin } >
                 <input className="auth__input" type="text" name="email" value={email} onChange={handleInputChange} placeholder="Email" />
                 <input className="auth__input" type="password" name="password" value={password} onChange={handleInputChange} placeholder="Password" />
 
