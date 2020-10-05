@@ -2,17 +2,18 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
+const environment = process.env
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCzG7jcYHzIOhXRqZRiH_xn_-DyVHekLuI",
-    authDomain: "react-firebase-ef893.firebaseapp.com",
-    databaseURL: "https://react-firebase-ef893.firebaseio.com",
-    projectId: "react-firebase-ef893",
-    storageBucket: "react-firebase-ef893.appspot.com",
-    messagingSenderId: "82368233926",
-    appId: "1:82368233926:web:0ff94d223d7e7da83e32c7"
+    apiKey: environment.REACT_APP_API_KEY,
+    authDomain: environment.REACT_APP_AUTH_DOMAIN,
+    databaseURL: environment.REACT_APP_DATABASE_URL,
+    projectId: environment.REACT_APP_PROJECT_ID,
+    storageBucket: environment.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: environment.REACT_APP_MESSAGING_SENDER_ID,
+    appId: environment.REACT_APP_APP_ID
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore()
