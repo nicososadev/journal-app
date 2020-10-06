@@ -7,6 +7,8 @@ cloudinary.config({
     api_secret: 'X_Y8tUxO9mvsf2WcrG1GDJK72vA' 
 });
 
+jest.setTimeout(20000)
+
 describe('Pruebas en fileUpload', () => {
     
     test('Debe cargar un archivo y retornar el URL', async(done) => {
