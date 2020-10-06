@@ -10,7 +10,7 @@ export const loginManager = (email, password) => {
 
         dispatch( startLoading() )
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        return firebase.auth().signInWithEmailAndPassword(email, password)
             .then( ({ user }) => {
                 
                 dispatch(
